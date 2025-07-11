@@ -1,94 +1,148 @@
-# 🏋️‍♀️ FitGeek – AI-Powered Fitness and Wellness App
 
-🚀 Hosted Demo: [Streamlit App](https://fitgeek.streamlit.app)  
-📦 GitHub Repo: [github.com/shreyamahajan5/FitGeek](https://github.com/shreyamahajan5/FitGeek)
+```markdown
+# FitGeek 🏋️‍♀️💡
 
----
+**A Machine Learning-powered fitness and wellness recommendation system.**
 
-## 📌 Overview
-
-**FitGeek** is a full-stack Django application designed to personalize fitness, wellness, and nutrition experiences. It combines multiple features including workout plans, dietary suggestions, stress detection, and dynamic health dashboards — all in one AI-powered platform.
+Live Demo: _Coming Soon_
 
 ---
 
-## 🔑 Features
+## 📌 Introduction
 
-- 💪 Personalized **Workout Plan** Tabs (core, legs, arms, etc.)
-- 🧠 **Stress Level Detector** using NLP (Perceived Stress Scale)
-- 💬 Motivational **Daily Quote & Health News** Feed via APIs
-- 🍽️ Smart **Diet Recommendation** System
-- 💧 **Hydration Calculator** & Wellness Trackers
-- 💸 Integrated **Payment Simulation** (UPI, Google Pay)
-- 📊 Dynamic **BMI Dashboard** with Categorized Routes
-- 📍 Clean modular routing with 50+ interactive templates
+FitGeek is a comprehensive Django-based web application that promotes fitness and well-being using machine learning. It provides features such as:
 
----
+- **Personalized workout plans**
+- **Custom diet recommendations**
+- **Body type tracking (BMI-based)**
+- **Real-time stress level detection**
+- **Interactive exercise guide**
+- **Calorie tracking and food insights using Nutritionix API**
+- **Health news and daily motivational quotes**
 
-## 🛠️ Tech Stack
-
-| Layer           | Tools Used                              |
-|----------------|-------------------------------------------|
-| Backend         | Python, Django, Django ORM               |
-| Frontend        | HTML/CSS, Bootstrap, Django Templates    |
-| NLP             | TextBlob, spaCy, NLTK                    |
-| APIs            | NewsAPI, ZenQuotes, Nutritionix          |
-| Data Visualization | Plotly, Pandas                       |
-| Auth            | Django Auth (Login, Logout, Superuser)   |
+The system aims to make fitness accessible, intelligent, and interactive.
 
 ---
 
-## 🗂️ Project Structure
+## 🛠️ Technologies Used
+
+- **Backend:** Django, SQLite
+- **Frontend:** HTML/CSS/JS, Bootstrap
+- **Machine Learning:** SVM (Diabetes Prediction), NLP (Stress Detection)
+- **APIs:** NewsAPI, Nutritionix, ZenQuotes
+- **Visualization:** Plotly, Pandas
+
+---
+
+## 📁 Project Structure
+
+```
 
 FitGeek/
-├── core_project/ # Actual Django app with views, templates
-│ ├── healthapp/ # Main app: views, urls, templates
-│ ├── manage.py # Django entry point
-│ └── requirements.txt # Dependencies
-├── fitgeek_project/ # Archived or zip-based code backup
-├── documents/ # Reports, presentations, assets
-├── healthvenv/ # DO NOT TRACK – Virtual environment
-└── .gitignore # Ensures no virtualenv or cache is committed
+│
+├── healthapp/               # Core Django app
+│   ├── templates/           # HTML templates
+│   ├── static/              # CSS, JS, and image files
+│   ├── views.py             # View logic
+│   ├── models.py            # DB Models
+│   ├── urls.py              # App-level routing
+│
+├── fitgeek\_project/         # Django project folder
+│   ├── settings.py          # Main settings
+│   ├── urls.py              # Project routing
+│
+├── db.sqlite3               # Database
+├── manage.py                # Django CLI entry
+├── requirements.txt         # Required Python packages
+└── README.md                # Project documentation
 
+````
 
 ---
 
-## ⚙️ Setup Instructions
+## 🚀 How to Run the Project Locally
 
-1. **Clone Repo**
-   ```bash
-   git clone https://github.com/shreyamahajan5/FitGeek.git
-   cd FitGeek
+> **Pre-requisites:**
+> - Python 3.7+
+> - `pip` installed
+> - Virtual environment (recommended)
 
-Create Virtual Environment
-  ```bash
-python3 -m venv env
-source env/bin/activate   # or env\Scripts\activate on Windows
+### 1. Clone the Repository
 
-Install Dependencies
-  ```bash
-pip install -r core_project/requirements.txt
+```bash
+git clone https://github.com/shreyamahajan5/FitGeek.git
+cd FitGeek
+````
 
-Run Server
-  ```bash
-cd core_project
-  ```bash
+### 2. Create Virtual Environment
+
+```bash
+python -m venv healthvenv
+source healthvenv/bin/activate     # Mac/Linux
+# OR
+healthvenv\Scripts\activate.bat    # Windows
+```
+
+### 3. Install Requirements
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4. Run Migrations
+
+```bash
+python manage.py migrate
+```
+
+### 5. Run the Server
+
+```bash
 python manage.py runserver
+```
 
-Open http://127.0.0.1:8000/ in your browser.
+> Open your browser and go to `http://127.0.0.1:8000/` 🎉
 
-📌 Notes
+---
 
-⚠️ The venv/ and zip files are excluded using .gitignore.
-🤖 AI stress analysis is based on scoring text responses via spaCy/TextBlob NLP pipelines.
-🗂 Multiple apps like exercise rec, hydrationcalc, and HealthGeek-Stress... are included as sub-modules inside healthvenv.
-🏆 Recognition
+## 📸 Features Showcase
 
-🟢 Best Project Award – Among 50+ teams during final year showcase
-📝 Published at ICACEBD 2024 – DOI: 10.1063/5.0239053
+* BMI Classification (Underweight, Normal, Overweight, Obese)
+* Full body and targeted exercise suggestions with animation guides
+* Payment gateway simulation (UPI/GPay)
+* Trainer application and appointment booking
+* Nutrition input → Exercise output using ML API
+* Live health news feed & motivational quotes
+* Timer & Shop integration
 
-🙋‍♀️ Author
+---
 
-Shreya Mahajan
-Graduate Student – MS CSE @ Santa Clara University
-📧 samahajan@scu.edu
-🌐 LinkedIn
+## 🏆 Achievements
+
+* 🥇 *Best Project Award* among 50+ teams
+* 📃 Published in **ICACEBD-24 Conference**: [DOI Link](https://doi.org/10.1063/5.0239053)
+
+---
+
+## 📚 Research Components
+
+* **Stress Detector**: Implemented using NLP on the Perceived Stress Scale (PSS)
+* **Diabetes Predictor**: Trained on PIMA Indian Diabetes Dataset using SVM
+* **Real-time data parsing**: Nutritionix API for food to calorie → workout mapping
+
+---
+
+## 🙋 Authors
+
+* **Shreya Mahajan**
+  [LinkedIn](https://linkedin.com/in/shreyamahajan5) | [GitHub](https://github.com/shreyamahajan5)
+
+---
+
+## 📄 License
+
+This project is for academic and educational purposes. Contact the author for permission if you wish to reuse.
+
+---
+
+```
