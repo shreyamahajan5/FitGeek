@@ -1,5 +1,3 @@
-
-```markdown
 # FitGeek 🏋️‍♀️💡
 
 **A Machine Learning-powered fitness and wellness recommendation system.**
@@ -36,7 +34,6 @@ The system aims to make fitness accessible, intelligent, and interactive.
 
 ## 📁 Project Structure
 
-```
 
 FitGeek/
 │
