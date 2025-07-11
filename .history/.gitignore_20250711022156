@@ -1,0 +1,21 @@
+# created by me 
+venv/
+__pycache__/
+*.pyc
+*.sqlite3
+db.sqlite3
+*.log
+.env
+.idea/
+*.DS_Store
+staticfiles/
+media/
+*.zip
+SourceCode_BE_A_Group No.17_venv.zip
+# .gitignore
+venv/
+*.zip
+*.tar
+*.pyc
+__pycache__/
+.DS_Store

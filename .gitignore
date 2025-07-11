@@ -1,6 +1,12 @@
-echo "venv/
-*.zip
-*.tar
-*.pyc
+venv/
 __pycache__/
-.DS_Store" > .gitignore
+*.pyc
+*.sqlite3
+db.sqlite3
+.env
+*.log
+.idea/
+.DS_Store
+*.zip
+staticfiles/
+media/
