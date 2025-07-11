@@ -1,4 +1,4 @@
-# FitGeek 🏋️‍♀️💡
+# FitGeek 🏋️✨
 
 **A Machine Learning-powered fitness and wellness recommendation system.**
 
@@ -41,16 +41,17 @@ FitGeek/
 │ ├── static/ # CSS, JS, and image files
 │ ├── views.py # View logic
 │ ├── models.py # DB Models
-│ ├── urls.py # App-level routing
+│ └── urls.py # App-level routing
 │
 ├── fitgeek_project/ # Django project folder
 │ ├── settings.py # Main settings
-│ ├── urls.py # Project routing
+│ └── urls.py # Project routing
 │
 ├── db.sqlite3 # Database
 ├── manage.py # Django CLI entry
 ├── requirements.txt # Required Python packages
 └── README.md # Project documentation
+
 ---
 
 ## 🚀 How to Run the Project Locally
@@ -137,5 +138,3 @@ python manage.py runserver
 This project is for academic and educational purposes. Contact the author for permission if you wish to reuse.
 
 ---
-
-```
