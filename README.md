@@ -34,27 +34,23 @@ The system aims to make fitness accessible, intelligent, and interactive.
 
 ## 📁 Project Structure
 
-
 FitGeek/
 │
-├── healthapp/               # Core Django app
-│   ├── templates/           # HTML templates
-│   ├── static/              # CSS, JS, and image files
-│   ├── views.py             # View logic
-│   ├── models.py            # DB Models
-│   ├── urls.py              # App-level routing
+├── healthapp/ # Core Django app
+│ ├── templates/ # HTML templates
+│ ├── static/ # CSS, JS, and image files
+│ ├── views.py # View logic
+│ ├── models.py # DB Models
+│ ├── urls.py # App-level routing
 │
-├── fitgeek\_project/         # Django project folder
-│   ├── settings.py          # Main settings
-│   ├── urls.py              # Project routing
+├── fitgeek_project/ # Django project folder
+│ ├── settings.py # Main settings
+│ ├── urls.py # Project routing
 │
-├── db.sqlite3               # Database
-├── manage.py                # Django CLI entry
-├── requirements.txt         # Required Python packages
-└── README.md                # Project documentation
-
-````
-
+├── db.sqlite3 # Database
+├── manage.py # Django CLI entry
+├── requirements.txt # Required Python packages
+└── README.md # Project documentation
 ---
 
 ## 🚀 How to Run the Project Locally
