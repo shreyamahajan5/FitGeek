@@ -1,0 +1,389 @@
+
+{% extends 'base.html' %}
+
+{% block title %} abbike {% endblock %}
+{% block abbikeactive %} active {% endblock %}
+{% block body %}
+{% load static %}
+<head>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 50%;
+    text-align: center;
+    padding: 20px;
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  </style>
+  </head>
+<body>
+<h1 style="text-align: center;">LEFT-LEG AB BIKE</h1><hr>
+<br>
+<div class="row">
+  
+    <div class="column">
+      <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/Ds6ipEOHR8SAl_TnmVHxxw.mp4" alt="pic" width="100%">
+    </div>
+    
+    <div class="column">
+    <section>
+
+
+<!-- ====== Config Form ======-->
+<b> <h3 style="text-align: center;">Workout timer!</h3></b>
+<form class="config" method="get">
+    <p>- Desired number of sets -</p>
+    <select class="sets" name="">
+                  <option class="sets--blank" value="0"></option>
+                  <option value="1">1 set</option>
+                  <option value="2">2 set</option>
+                  <option value="3">3 set</option>
+                  <option value="4">4 set</option>
+                  <option value="5">5 set</option>
+                  <option value="6">6 set</option>
+                  <option value="7">7 set</option>
+                  <option value="8">8 set</option>
+                  <option value="9">9 set</option>
+              </select>
+    <!--./sets-->
+    <p>- Length of set -</p>
+    <select class="length" name="">
+
+                  <option value="10">10 Seconds</option>
+                  <option value="20" selected>20 Seconds</option>
+                  <option value="30">30 Seconds</option>
+                  <option value="40">40 Seconds</option>
+                  <option value="50">50 Seconds</option>
+                  <option value="60">60 Seconds</option>
+              </select>
+    <!--./length-->
+    <p>- Length of rest period -</p>
+    <select class="rest" name="">
+                  <option value="5" selected="">5 Seconds</option>
+                  <option value="10">10 Seconds</option>
+                  <option value="20">20 Seconds</option>
+                  <option value="30">30 Seconds</option>
+                  <option value="40">40 Seconds</option>
+                  <option value="50">50 Seconds</option>
+                  <option value="60">60 Seconds</option>
+              </select>
+    <!--./rest-->
+  </form>
+  <!--./config-->
+  <!-- ====== Timer Section ======-->
+  <section class="timer">
+    <div class="timer__clock">
+      <h1></h1>
+      <p>Seconds</p>
+    </div>
+  </section>
+  <!--./timer-->
+  <!-- ====== Congrats Section ======-->
+  <section class="congrats">
+    <div class="congrats__container">
+      <h1>Congratulations on achieving your goal!</h1>
+    
+    </div>
+  </section>
+  <!--./congrats-->
+  <!-- ====== Button and Set-timer ======-->
+  <button disabled>Begin</button>
+  <p class="set-timer"></p>
+
+
+<br>
+
+
+
+
+
+
+<style>
+    /* ------ Globals ------ */
+
+* {
+  font-family: arial;
+  margin: 0;
+  padding: 0;
+}
+
+
+/* ------ Config Styles ------ */
+
+.config {
+  width: 70vh;
+  height: 60vh;
+  margin: 1rem auto 0;
+  padding-top: 2vh;
+  text-align: center;
+  border: 1px solid #aaa;
+}
+
+.config select {
+  font-size: 3vh;
+  width: 25vh;
+  margin: 2vh 0 4vh;
+  border: 1px solid #aaa;
+}
+
+.config p {
+  font-size: 3vh;
+  font-family: 'Times New Roman', serif;
+  padding-bottom: 0px;
+}
+
+
+/* ------ Timer Styles ------ */
+
+.timer {
+  display: none;
+}
+
+.timer p {
+  font-size: 5vh;
+  text-align: center;
+}
+
+.timer__clock {
+  overflow: auto;
+  width: 70vh;
+  height: 70vh;
+  margin: 2vh auto;
+  color: white;
+  background-color: green;
+}
+
+.timer__clock h1 {
+  font-size: 35vh;
+  margin-top: 8vh;
+  text-align: center;
+}
+/* ------ Congrats Styles ------ */
+
+.congrats {
+  display: none;
+}
+
+.congrats__container {
+  width: 70vh;
+  height: 40vh;
+  margin: 1rem auto 0;
+  padding-top: 10vh;
+  text-align: center;
+  border: 1px solid #aaa;
+}
+
+.congrats__container h1 {
+  font-size: 5vh;
+}
+
+.congrats__container p {
+  font-size: 3vh;
+}
+
+
+/* ------ Button Styles ------ */
+
+button {
+  font-size: 3vh;
+  display: block;
+  width: 70vh;
+  height: 7vh;
+  margin: 2vh auto 0;
+}
+
+
+/* ------ Set-timer Styles ------ */
+
+.set-timer {
+  font-size: 5vh;
+  margin-top: 2vh;
+  text-align: center;
+}
+</style>
+
+<script>
+    var runState = 0; //State of application; 0 = stopped; 1 = running; 2 = congrats
+var timer = 0; //Holds contents of timer h1
+var sets = 0; //Number of sets selected
+var currSet = 1; //Current set
+var setLength = 0; //Length of sets
+var restLength = 0; //Length of rest period
+var setState = 0; //State of sets/rest; 0 = set running; 1 = rest running;
+var refreshTimer; //Holds setInterval globally
+
+//Check sets field and make sure there is a selection before proceeding
+$(".sets").change(function() {
+  if ($(".sets").val() != "0") {
+    $("button").removeAttr("disabled");
+    $(".sets--blank").hide();
+  }
+});
+
+//Button click event
+$("button").click(function() {
+
+  if (runState == 0) {
+    initialize();
+    run();
+  } else {
+    stop();
+  }
+
+});
+
+//Initialize Timer Section
+function initialize() {
+
+  runState = 1;
+  currSet = 1;
+  setState = 0;
+  sets = $(".sets").val();
+  setLength = $(".length").val();
+  restLength = $(".rest").val();
+  timer = setLength;
+
+  $('.timer h1').text(timer);
+  $('.set-timer').text("Set " + currSet + " of " + sets);
+  $("button").text("Cancel Workout");
+  $(".config").hide();
+  $(".congrats").hide();
+  $(".timer").show();
+  $(".set-timer").show();
+  $('.timer__clock').css("background-color", "green");
+}
+
+//Run the Timer
+function run() {
+
+  //1 second refreshtimer
+  refreshTimer = setInterval(function() {
+
+    //If timer reaches 0, check and change the state
+    if (timer == 0) {
+      if (setState == 1 && currSet == sets) {
+        runState = 1;
+        $("button").text("Start New Workout");
+        $('.timer').hide();
+        $('.set-timer').hide();
+        $('.congrats').show();
+        clearInterval(refreshTimer);
+        return;
+      }
+      changeState();
+    }
+
+    //Update timer and display it
+    timer--;
+    $('.timer h1').text(timer);
+    $('.timer h1').fadeOut(0);
+    $('.timer h1').fadeIn(500);
+
+  }, 1000)
+
+  //Check current state and change to other state
+  function changeState(state) {
+    if (setState == 0) {
+      setState = 1;
+      timer = parseInt(restLength) + 1;
+      $('.set-timer').text("Rest " + currSet + " of " + sets);
+      $('.timer__clock').css("background-color", "teal");
+    } else {
+      setState = 0;
+      currSet++;
+      timer = parseInt(setLength) + 1;
+      $('.set-timer').text("Set " + currSet + " of " + sets);
+      $('.timer__clock').css("background-color", "green");
+    }
+  }
+
+}
+
+//Stop the current process and reset the config form
+function stop() {
+  clearInterval(refreshTimer);
+  runState = 0;
+  $("button").text("Begin");
+  $("button").attr("disabled", "disabled");
+  $('.sets').val("0");
+  $('.length').val("20");
+  $('.rest').val("10");
+  $('.timer').hide();
+  $('.congrats').hide();
+  $('.set-timer').hide();
+  $('.config').show();
+  $(".sets--blank").show();
+}
+</script>
+<br>
+
+</html>
+
+
+
+
+<html>
+<head>
+  <title>
+      Test
+  </title>
+
+
+  <style type="text/css">
+
+
+      html, body
+      {
+          width: 100%;
+          height: 100%;
+          margin: 0px;
+          padding: 0px;
+      }
+
+
+      .navbar-fixed-top
+      {
+          position: fixed;
+          display: block;
+          width: 100%;
+          background-color: red;
+          height: 50px;
+          top: 0px;
+      }
+
+      .sidebar
+      {
+          display: block;
+          float: left;
+          width: 20%;
+          height: 900px;
+          background-color: green;
+      }
+
+  </style>
+
+
+</head>
+
+</html>
+    </section>
+    </div>
+</div>
+
+
+</body>
+
+
+</html>
+
+{% endblock %}

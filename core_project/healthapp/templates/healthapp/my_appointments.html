@@ -1,0 +1,590 @@
+{% extends 'base.html' %}
+
+{% block title %} {{ request.user }} - Appointments {% endblock %}
+
+{% block body %}
+
+
+
+
+<center>
+<br>
+
+<h2>Showing Appointments for {{ request.user.username }}</h2>
+  <div class="appointment-control-container">
+    <div class="appointment-filter-container">
+      <label for="selAppointmentFilter">Show</label>
+      <select id="selAppointmentFilter">
+        <option value="upcoming">Upcoming</option>
+        <option value="past3">Past 3 Months</option>
+        <option value="pastyear">Past Year</option>
+        <option value="past">All Past</option>
+      </select>
+    </div>
+    <br>
+    <button id="btnNewAppointment" style="padding: 10px; font-size: 20px; border-radius: 10px;"><a href="http://127.0.0.1:8000/appointment/" style="color:#000"><i class="fa fa-calendar-plus-o"></i><span>Schedule Appointment</span></a></button><br>
+  <br></div>
+  <div id="divAppointmentContainer">
+    <div class="scrollable-table">
+      <table id="tableHeader">
+        <tbody>
+          <tr>
+            <td>Patient name<i class="fa fa-sort"></i></td>
+            <td>Issue<i class="fa fa-sort"></i></td>
+           <td>Contact No.<i class="fa fa-sort"></i></td>
+            <td>Address<i class="fa fa-sort"></i></td>
+            
+          </tr>
+        </tbody>
+      </table>
+      <div id="divNoRecordsFound">No appointments found</div>
+      <table id="tableAppointmentData" data-page="1">
+        <tbody>
+            {% if my_appt %}
+            {% for appt in my_appt %}
+            
+              <tr>
+              <td>{{ appt.full_name }}</td>
+              <td>{{ appt.desc }}</td>
+              <td>{{ appt.phone }}</td>
+              <td>{{ appt.address }}</td>
+              </tr>
+            </div>
+            
+            {% endfor %}
+                {% else %}
+                <p class="text-muted">You do not have any previous appointments!</p>
+                {% endif %}
+          
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5">
+              <div><i class="fa fa-chevron-left" id="iPrevPage" disabled="disabled"></i><span><span id="spanCurrentPage"></span><span>of</span><span id="spanTotalPages"></span></span><i class="fa fa-chevron-right" id="iNextPage"></i></div>
+            </td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+  </div>
+  
+</div>
+</center>
+<style>
+  .container {
+width: 900px;
+margin-left: auto;
+margin-right: auto;
+padding-left: 20px;
+}
+.container h2 {
+font-size: 1.2em;
+font-family: 'Open Sans', sans-serif;
+}
+.container .appointment-control-container {
+margin-top: 1.5em;
+margin-bottom: 1.5em;
+padding-left: 20px;
+border: 1px solid #ddd;
+color: #555;
+padding: 0.6em;
+border-radius: 3px;
+background: #eee;
+font-size: 0.8em;
+font-family: 'Open Sans', sans-serif;
+position: relative;
+}
+.container .appointment-control-container .appointment-filter-container {
+display: inline-block;
+margin-left: 1em;
+}
+.container .appointment-control-container .appointment-filter-container label {
+margin-right: 1em;
+}
+.container .appointment-control-container .appointment-filter-container select {
+cursor: pointer;
+}
+.container .appointment-control-container button {
+position: absolute;
+right: 1em;
+top: 4px;
+border: 1px solid rgba(0,0,0,0.3);
+border-radius: 3px;
+padding: 0.5em;
+font-size: 0.9em;
+color: #555;
+background: rgba(255,255,255,0.6);
+cursor: pointer;
+}
+.container .appointment-control-container button:hover {
+border: 1px solid rgba(0,0,0,0.2);
+background: rgba(255,255,255,0.7);
+}
+.container .appointment-control-container button i {
+margin-right: 0.6em;
+}
+.container i {
+margin-right: 4px;
+margin-left: 4px;
+color: #52576e;
+padding-left: 20px;
+}
+#divNoRecordsFound {
+padding: 1em;
+font-family: 'Open Sans', sans-serif;
+text-align: center;
+font-size: 0.9em;
+background: rgba(205,209,208,0.1);
+color: rgba(85,89,108,0.95);
+display: none;
+}
+.scrollable-table {
+position: relative;
+font-family: 'Open Sans', sans-serif;
+border-radius: 3px;
+padding-left: 30px;
+border: 1px solid rgba(85,89,108,0.3);
+}
+.scrollable-table table {
+width: 100%;
+padding: 0;
+margin: 0;
+border-collapse: collapse;
+}
+.scrollable-table table td {
+margin: 0;
+padding: 0.3em;
+}
+.scrollable-table table:first-child td {
+font-size: 0.6em;
+text-transform: uppercase;
+border-bottom: 1px solid rgba(85,89,108,0.3);
+padding: 0.8em;
+cursor: pointer;
+}
+.scrollable-table table:last-child tbody tr {
+transition: background-color 0.2s;
+}
+.scrollable-table table:last-child tbody td {
+transition: border-color 0.25s ease-out;
+font-size: 0.9em;
+height: 28px;
+}
+.scrollable-table table td:nth-child(1) {
+width: 20%;
+}
+.scrollable-table table td:nth-child(2) {
+width: 20%;
+}
+.scrollable-table table td:nth-child(3) {
+width: 15%;
+}
+.scrollable-table table td:nth-child(4) {
+width: 15%;
+}
+.scrollable-table table td:nth-child(5) {
+width: 30%;
+}
+.scrollable-table table:last-child tbody tr:hover {
+background: rgba(205,209,208,0.1);
+cursor: pointer;
+}
+.scrollable-table table:last-child tbody tr td:first-child {
+border-left: 4px solid transparent;
+}
+.scrollable-table table:last-child tbody tr:hover td:first-child {
+border-color: rgba(85,89,108,0.4);
+}
+.scrollable-table table:last-child tbody tr.selected-row {
+background-color: rgba(85,89,108,0.1);
+}
+.scrollable-table table:last-child tbody tr.selected-row td:first-child {
+border-color: #55596c;
+}
+.scrollable-table table:last-child tfoot tr {
+border-top: 1px solid #eee;
+font-size: 0.8em;
+text-align: right;
+}
+.scrollable-table table:last-child tfoot tr:hover {
+background: rgba(205,209,208,0);
+cursor: default;
+}
+.scrollable-table table:last-child tfoot tr:hover td:first-child {
+border-color: transparent;
+}
+.scrollable-table table:last-child tfoot tr td:last-child div {
+margin-right: 2em;
+font-size: 1.2em;
+}
+.scrollable-table table:last-child tfoot tr td:last-child div i {
+cursor: pointer;
+}
+.scrollable-table table:last-child tfoot tr td:last-child div i[disabled] {
+color: #ddd;
+}
+.scrollable-table table:last-child tfoot tr td:last-child div span {
+font-size: 0.9em;
+margin-left: 0.4em;
+margin-right: 0.4em;
+}
+#btnCancelAppointment,
+#btnRescheduleAppointment {
+font-family: 'Open Sans', sans-serif;
+border: 1px solid rgba(0,0,0,0.3);
+border-radius: 3px;
+padding: 0.3em;
+font-size: 0.8em;
+color: #555;
+background: rgba(238,238,238,0.3);
+cursor: pointer;
+min-width: 110px;
+margin-bottom: 0.8em;
+}
+#btnCancelAppointment:hover,
+#btnRescheduleAppointment:hover {
+border: 1px solid rgba(0,0,0,0.2);
+background: rgba(255,255,255,0.7);
+}
+#btnCancelAppointment i,
+#btnRescheduleAppointment i {
+margin-right: 0.6em;
+margin-left: -0.1em;
+}
+#btnRescheduleAppointment {
+margin-right: 0.9rem;
+}
+.appointment-details {
+position: relative;
+margin-top: 0.5rem;
+background-color: #fff;
+transition: box-shadow 0.25s;
+border-radius: 3px;
+font-family: 'Open Sans', sans-serif;
+box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+}
+.appointment-details .appointment-title {
+position: absolute;
+left: 400px;
+top: 14px;
+font-size: 1em;
+color: rgba(0,0,0,0.8);
+}
+.appointment-actions {
+display: inline;
+position: absolute;
+top: 1em;
+right: 1em;
+}
+.appointment-content {
+padding: 20px 20px 0;
+border-radius: 0 0 2px 2px;
+position: relative;
+}
+.appointment-content .appointment-data {
+display: inline-block;
+}
+#secMapContainer {
+overflow: hidden;
+clear: both;
+}
+#secMapContainer iframe {
+width: 100%;
+height: 300px;
+border: none;
+border-radius: 3px;
+position: relative;
+bottom: -4px;
+}
+#tableAppointmentDetails {
+position: relative;
+border: 1px solid rgba(0,0,0,0.08);
+border-radius: 4px;
+margin-top: 1em;
+margin-bottom: 1em;
+min-height: 76px;
+border-collapse: separate;
+border-spacing: 0;
+min-width: 96%;
+margin-left: auto;
+margin-right: auto;
+}
+#tableAppointmentDetails tr span {
+display: block;
+color: #000;
+}
+#tableAppointmentDetails tr span:first-child {
+font-size: 0.6em;
+letter-spacing: 0.2em;
+color: #777;
+text-transform: uppercase;
+}
+#tableAppointmentDetails tr span:last-child {
+font-size: 0.9em;
+}
+#tableAppointmentDetails tr td {
+padding-left: 12px;
+padding-top: 0.6em;
+}
+#tableAppointmentDetails tr:first-child td:first-child {
+background-color: rgba(209,196,233,0.2);
+border-right: 1px solid rgba(0,0,0,0.09);
+width: 110px;
+text-align: center;
+padding-left: 0;
+padding-top: 0;
+}
+#tableAppointmentDetails tr:first-child td:first-child span {
+color: #333;
+font-size: 1em;
+letter-spacing: 0;
+font-weight: 400;
+margin-top: 0.4em;
+}
+#tableAppointmentDetails tr:first-child td:nth-child(2) {
+max-width: 200px;
+}
+#tableAppointmentDetails tr:last-child td {
+padding-bottom: 0.4em;
+padding-top: 0.6em;
+}
+#spanPrintButton {
+border: 1px solid rgba(51,51,51,0.2);
+background: rgba(238,238,238,0.3);
+cursor: pointer;
+min-width: 110px;
+margin-bottom: 0.8em;
+width: 124px;
+height: 26px;
+display: inline-block;
+border-radius: 3px;
+position: absolute;
+top: 16px;
+left: 180px;
+cursor: pointer;
+}
+#spanPrintButton:hover {
+border: 1px solid rgba(0,0,0,0.2);
+background: rgba(255,255,255,0.7);
+}
+#spanPrintButton span {
+margin-left: 2.7em;
+font-size: 0.8em;
+line-height: 26px;
+}
+#spanPrintButton i {
+position: absolute;
+left: 5px;
+top: 4px;
+font-size: 1.2em;
+}
+#divAppointmentContent {
+display: none;
+}
+.scrollable-table ::-webkit-scrollbar {
+width: 6px;
+}
+
+</style>
+<script>
+var googleMapUrl = 'https://www.google.com/maps/embed?pb=!1m16!1m12!1m3!1d241298.5232864252!2d72.88081267555734!3d19.094954814403014!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!2m1!1shospital%20india!5e0!3m2!1sen!2sin!4v1655565792247!5m2!1sen!2sin" width="100%" height="500" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade',
+$divAppointmentContainer = $('#divAppointmentContainer'),
+$divAppointmentDetailContainer = $('#divAppointmentDetailContainer'),
+$divAppointmentContent = $('#divAppointmentContent'),
+$spanAppointmentDateDetails = $('#spanAppointmentDateDetails'),
+$spanPatientNameDetails = $('#spanPatientNameDetails'),
+$spanProviderNameDetails = $('#spanProviderNameDetails'),
+$spanAppointmentTypeDetails = $('#spanAppointmentTypeDetails'),
+$spanAppointmentOrgDetails = $('#spanAppointmentOrgDetails'),
+$spanAppointmentNoteDetails = $('#spanAppointmentNoteDetails'),
+$tableAppointmentData = $('#tableAppointmentData'),
+$iPrevPage = $('#iPrevPage'),
+$iNextPage = $('#iNextPage'),
+$iframeMap = $('#iframeMap'),
+$tableHeader = $('#tableHeader'),
+$tableBody = $('#tableAppointmentData tbody'),
+$tableRows = $('tr', $tableBody),
+$headerColumns = $('td', $tableHeader),
+$selAppointmentFilter = $('#selAppointmentFilter'),
+$spanCurrentPage = $('#spanCurrentPage'),
+$spanTotalPages = $('#spanTotalPages'),
+$upcomingRecords = $tableRows.filter(':not(.past-appointment-entry)').hide(),
+$pastRecords = $tableRows.filter('.past-appointment-entry').hide(),
+$divNoRecordsFound = $('#divNoRecordsFound');
+
+
+
+
+//FILTER
+$selAppointmentFilter.on('change', function() {
+bindRecords();
+});
+
+//ROW SELECTIONS
+$tableRows.on('click', function() {
+var $this = $(this);
+if ($this.hasClass('selected-row')) return;
+
+$tableRows.removeClass('selected-row');
+$this.addClass('selected-row');
+$iframeMap.show().attr('src', googleMapUrl + encodeURIComponent($this.attr('data-location')));
+
+$divAppointmentDetailContainer.show();
+$spanAppointmentDateDetails.text($this.attr('data-date'));
+$spanPatientNameDetails.text($this.attr('data-patient'));
+$spanProviderNameDetails.text($this.attr('data-provider'));
+$spanAppointmentTypeDetails.text($this.attr('data-type'));
+$spanAppointmentOrgDetails.text($this.attr('data-org'));
+$spanAppointmentNoteDetails.text($this.attr('data-note'));
+$divAppointmentContent.show();
+});
+
+//SORTING
+$headerColumns.on('click', function() {
+var $this = $(this),
+    $iSortIcon = $('i', $this);
+
+$headerColumns.filter(function() {
+  return (this !== $this[0]);
+}).find('i').removeClass('fa-sort-desc fa-sort-asc fa-sort').addClass('fa-sort');
+
+if ($iSortIcon.hasClass('fa-sort')) {
+  $iSortIcon.removeClass('fa-sort').addClass('fa-sort-desc');
+} else if ($iSortIcon.hasClass('fa-sort-desc')) {
+  $iSortIcon.removeClass('fa-sort-desc').addClass('fa-sort-asc');
+} else if ($iSortIcon.hasClass('fa-sort-asc')) {
+  $iSortIcon.removeClass('fa-sort-asc').addClass('fa-sort-desc');
+}
+});
+
+// PAGINATION
+var totalRecordsPerPage = 6,
+  currentDate = new Date(),
+  currentYear = currentDate.getFullYear(),
+  targetRecords,
+  totalDisplayRecords,
+  totalPages;
+
+function daysBetweenDates(date1, date2) {
+return Math.round(Math.abs(date1.getTime() - date2.getTime()) / (1000 * 60 * 60 * 24));
+};
+
+function bindRecords() {
+var selectedFilter = $selAppointmentFilter.val(),
+    currentPage = $tableAppointmentData.attr('data-page');
+
+targetRecords = (selectedFilter === 'upcoming' ? $upcomingRecords : $pastRecords);
+totalDisplayRecords = targetRecords.length;
+totalPages = Math.ceil(totalDisplayRecords / totalRecordsPerPage);
+
+$pastRecords.hide();
+$upcomingRecords.hide();
+$spanCurrentPage.text(currentPage);
+$spanTotalPages.text(totalPages);
+
+for(var i = 0, x = 1, p = 1, addedRecords = 0, len = totalDisplayRecords; i < len; i++, x++) {
+  if (x === totalRecordsPerPage) {
+    p++;
+    x = 1;
+  }
+  var $row = $(targetRecords[i]);
+  $row.attr('data-page', p);
+  
+  if (selectedFilter === 'pastyear') {
+    var rowDate = new Date(Date.parse($row.attr('data-date'))),
+      betweenDays = daysBetweenDates(rowDate, currentDate);
+
+    if (betweenDays <= 365) {
+      $row.show();
+      addedRecords++;
+    }
+  } else if (selectedFilter === 'past3') {
+    var rowDate = new Date(Date.parse($row.attr('data-date'))),
+        betweenDays = daysBetweenDates(rowDate, currentDate);
+    
+    if (betweenDays <= 90) {
+      $row.show();
+      addedRecords++;
+    }
+  } else if (i < totalRecordsPerPage) {
+    $row.show();
+    addedRecords++;
+  }
+}
+
+if (parseInt(currentPage) === totalPages) {
+  $iNextPage.attr('disabled', 'disabled');
+  $iPrevPage.attr('disabled', 'disabled');
+} else {
+  $iNextPage.removeAttr('disabled');
+}
+
+if (addedRecords === 0) {
+  $divNoRecordsFound.show();
+  $tableAppointmentData.hide();
+  $divAppointmentDetailContainer.hide();
+  $iframeMap.attr('src', 'about:blank');
+} else {
+  $divNoRecordsFound.hide();
+  $tableAppointmentData.show();
+  $divAppointmentDetailContainer.show();
+  $iframeMap.attr('src', 'about:blank');
+}
+}
+$iNextPage.on('click', function() {
+var currentPage = $tableAppointmentData.attr('data-page');
+if (targetRecords != null && targetRecords.length > 0 && currentPage < totalPages) {
+  currentPage++;
+  targetRecords.filter('[data-page="' + (currentPage-1) + '"]').hide();
+  targetRecords.filter('[data-page="' + currentPage + '"]').show();
+  $tableAppointmentData.attr('data-page', currentPage);
+  $spanCurrentPage.text(currentPage);
+  $iPrevPage.removeAttr('disabled');
+  $divAppointmentDetailContainer.hide();
+  $iframeMap.attr('src', 'about:blank');
+}
+if ((currentPage+1) >= totalPages) {
+  $iNextPage.attr('disabled', 'disabled');
+}
+});
+$iPrevPage.on('click', function() {
+var currentPage = $tableAppointmentData.attr('data-page');
+if (targetRecords != null && targetRecords.length > 0 && (currentPage-1 >= 1)) {
+  currentPage--;
+  targetRecords.filter('[data-page="' + (currentPage+1) + '"]').hide();
+  targetRecords.filter('[data-page="' + currentPage + '"]').show();
+  $tableAppointmentData.attr('data-page', currentPage);
+  $spanCurrentPage.text(currentPage);	
+  $iNextPage.removeAttr('disabled');
+  $divAppointmentDetailContainer.hide();
+  $iframeMap.attr('src', 'about:blank');
+}
+if ((currentPage-1) <= 0) {
+  $iPrevPage.attr('disabled', 'disabled');
+}
+});
+
+bindRecords();
+
+setTimeout(function() {
+if ($tableRows.length > 0) {
+  $tableRows[0].click();
+}
+}, 800);
+</script>
+<script>
+function printInfo(ele) {
+        var openWindow = window.open("", "title", "attributes");
+        openWindow.document.write(ele.previousSibling.innerHTML);
+        openWindow.document.close();
+        openWindow.focus();
+        openWindow.print();
+        openWindow.close();
+
+        
+    }
+          
+
+</script>
+
+{% endblock %}

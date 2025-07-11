@@ -1,0 +1,153 @@
+
+{% extends 'base.html' %}
+
+{% block title %} healthinfo {% endblock %}
+{% block healthinfoactive %} active {% endblock %}
+{% block body %}
+{% load static %}
+<center>
+
+<h2 style="color: #ffffff;">About HealthGeek</h2>
+</center>
+
+
+<br></br>
+
+
+
+
+<ul class="cards">
+  
+    <li class="card">
+      <h1>Automatic and Custom Diet Recommender </h1>
+      
+      <p>Automatic Diet Recommendation allows you to tailor your dietary plan effortlessly. Simply input your age, height, weight, gender, and activity level. Then, choose your weight loss plan or select to maintain your current weight. Customize your meal frequency and set nutritional parameters such as calories, fat content, and protein intake. Optionally, specify ingredients to include in the recommendations. With the click of a button, generate personalized diet recommendations that align with your goals and preferences.</p>
+    </li>
+    <li class="card">
+      <h1>Stress Determinator </h1>
+  
+      <p>The Perceived Stress Scale (PSS) is a renowned tool used for assessing stress levels. Originally developed in 1983, it remains a prominent choice for understanding the impact of various situations on individuals' perceived stress. Through a series of questions regarding feelings and thoughts over the last month, the PSS aims to gauge stress perception. Each question prompts respondents to indicate the frequency of certain emotions or thoughts, emphasizing quick and instinctive responses. While some questions may seem similar, they capture distinct aspects, warranting separate consideration. The key is to provide estimates rather than precise counts, offering valuable insights into stress perception and its nuances.</p>
+    </li>
+    <li class="card">
+      <h1>Hydration Calculator</h1>
+  
+      <p>Proper hydration is essential for maintaining optimal health and well-being. Use this tool to calculate your daily hydration needs, create a tentative water drinking schedule, track your water consumption, and receive personalized recommendations to stay hydrated throughout the day.</p>
+  
+    </li>
+    <li class="card">
+      <h1>Diabetes Predictor</h1>
+  
+      <p></p>
+  
+    </li>
+  </ul>
+
+<br></br>
+  <style>
+    .cards {
+  position: relative;  
+  list-style-type: none;
+  padding: 0;
+  max-width: 34em;
+  margin: 20% auto 0;
+}
+
+.card {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  
+  background: #ccc;
+  border-radius: 30px;
+  padding: 40px;
+  box-shadow: 0 0 40px #000;
+  transform: translateY(0) rotate(4deg) translateX(25px) scale(1);
+  transform-origin: 0 0;
+  
+  transition: transform 0.6s cubic-bezier(.8,.2,.1,0.8) 0.1s,
+    background 0.4s linear;
+  
+  cursor: pointer;
+  user-select: none;
+  
+  :last-child { margin-bottom: 0; }
+}
+
+.card--next { 
+  z-index: 5; 
+  transform: translateY(-25px) rotate(4deg) translateX(25px) scale(1);
+}
+
+.card--out {
+  animation: card-out 0.6s cubic-bezier(.8,.2,.1,0.8);
+  transform: translateY(-50px) rotate(8deg) translateX(55px) scale(0.95);
+  z-index: 1;
+  background: #bbb;
+}
+
+@keyframes card-out {
+  0% { z-index: 20; transform: translateY(0px) rotate(-4deg); }
+  50% { transform: translateY(-120%) rotate(-5deg) translateX(-40px); }
+  80% { z-index: 1; }
+  100% { transform: translateY(-50px) rotate(8deg) translateX(55px) scale(0.95); }
+}
+
+.card--current {
+  cursor: auto;
+  user-select: auto;
+  position: relative;
+  z-index: 10;
+  opacity: 1;
+  background: #EEE;
+  transform: rotate(-1deg) translateX(0%) scale(1);
+}
+
+
+
+h1 { margin: 0; }
+html, body { height: 100%; }
+body { padding: 0px; background: #22252a; }
+
+
+  </style>
+
+
+<script>
+    $.fn.commentCards = function(){
+
+return this.each(function(){
+
+  var $this = $(this),
+      $cards = $this.find('.card'),
+      $current = $cards.filter('.card--current'),
+      $next;
+
+  $cards.on('click',function(){
+    if ( !$current.is(this) ) {
+      $cards.removeClass('card--current card--out card--next');
+      $current.addClass('card--out');
+      $current = $(this).addClass('card--current');
+      $next = $current.next();
+      $next = $next.length ? $next : $cards.first();
+      $next.addClass('card--next');
+    }
+  });
+
+  if ( !$current.length ) {
+    $current = $cards.last();
+    $cards.first().trigger('click');
+  }
+
+  $this.addClass('cards--active');
+
+})
+
+};
+
+$('.cards').commentCards();
+</script>
+
+<br>
+</br>
+{% endblock %}

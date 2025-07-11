@@ -1,0 +1,27 @@
+  {% extends 'base.html' %}
+
+  {% block title %} Picker {% endblock %}
+  {% block pickactive %} active {% endblock %}
+  {% block body %}
+  <center>
+    {% load static %}
+    <div class="container">
+      <h1>Wanna train <span id="muscle">your body</span>?</h1>
+      <p class="text-muted">Tip: Click the body part you want to train from the figure below!</p>
+      <img src="https://raw.githubusercontent.com/sidsingh0/BrownMunde-Health-NIT/master/healthproject/healthapp/static/healthapp/images/bgm.png" width="297" height="597" alt="anImage" usemap="#brownmunde">
+
+      <map name="brownmunde">
+        <area shape="rect" coords="11,109,85,335" href="{% url 'health-exercises' 'arm' %}" alt="arms" onmousemove="fun('Arms')">
+        <area shape="rect" coords="191,108,286,335" href="{% url 'health-exercises' 'arm' %}" alt="arms" onmousemove="fun('Arms')">
+        <script>
+            function fun(val){
+              document.getElementById("muscle").innerHTML = val;
+            }
+        </script>
+        <area shape="rect" coords="105,116,186,166" href="{% url 'health-exercises' 'chest' %}" alt="chest" onmousemove="fun('Chest')">
+        <area shape="rect" coords="103,272,221,589" href="{% url 'health-exercises' 'leg' %}" alt="legs" onmousemove="fun('Legs')">
+        <area shape="rect" coords="105,166,187,265" href="{% url 'health-exercises' 'core' %}" alt="core" onmousemove="fun('Core')">
+      </map>
+    </div>
+    </center>
+  {% endblock body %}

@@ -1,0 +1,130 @@
+
+{% extends 'base.html' %}
+
+{% block title %} WORKOUT! {% endblock %}
+{% block lungestabctive %} active {% endblock %}
+{% block body %}
+{% load static %}
+
+
+<head>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    text-align: center;
+    padding-left: 60px;
+    
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  img{
+    width:350px;
+    height:350px;
+  }
+  </style>
+  </head>
+<body>
+
+
+  <br>
+  &nbsp;<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+    Other Exercises
+  </a>
+  
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title" id="offcanvasExampleLabel" style="color:black ;">Other Exercises</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      
+      <button style="width:350px" class="btn btn-secondary btn-lg disabled" type="button" ><a href="http://127.0.0.1:8000/lungestab/" style="color: white;">Lunges</a></button><br><br>
+      <button style="width:350px" class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/fbtab/" style="color: white;">Full Body</a></button><br><br>
+      <button style="width:350px" class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/cardiotab/" style="color: white;">Cardio</a></button><br><br>
+      <button style="width:350px" class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/coretab/" style="color: white;">Core</a></button><br><br>
+      <button style="width:350px" class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/backtab/" style="color: white;">Back</a></button><br><br>
+      <button style="width:350px" class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/shouldertab/" style="color: white;">Shoulder</a></button><br><br>
+      <button style="width:350px" class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/armtab/" style="color: white;">Arms</a></button><br><br>
+      <button style="width:350px" class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/chesttab/" style="color: white;">Chest</a></button><br><br>
+      <button style="width:350px" class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/legstab/" style="color: white;">Legs</a></button>
+   
+     
+    </div>
+</div>
+
+
+<!--///////////////////////////////////////////////////////////////////-->
+
+
+      <body>
+  <br><br>
+  <section class="lungediv">
+  <u><h2 style="text-align:center;">LUNGE WORKOUTS</h2></u><hr>
+  &nbsp;&nbsp;&nbsp;
+  <!--ROW 1-->
+  
+<div class="row">
+  
+<div class="column">
+    <button class="btn"><a href="http://127.0.0.1:8000/lunges/">
+      <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/MSlGZFeBQPmXmNPRh2gQBw.mp4" alt="Lunge" ></a>
+     <br> Lunge
+    </button>
+  </div>
+
+  <div class="column">
+    <button class="btn"><a href="http://127.0.0.1:8000/reverselunges/">
+      <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/aNKfefUCRZmpC0eCs-C-3w.mp4" alt="Lunge" ></a>
+  <br>Reverse Lunge
+    </button>
+  </div>
+
+
+  <div class="column"> 
+    <button class="btn"><a href="http://127.0.0.1:8000/laterallunge/">
+      <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/wi64dctdQ4G2QbUSWC-8_w.mp4" alt="Lunge" ></a>
+      <br>Lateral Bodyweight Lunge
+    </button>
+  </div>
+</div> 
+<!--ROW 2-->
+<div class="row">
+  
+<div class="column">
+<button class="btn"><a href="http://127.0.0.1:8000/crossbacklunge/">
+  <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/eIReM6v5RBSsYbsJnMNJDQ.mp4" alt="Lunge" ></a>
+  <br>Crossback Lunge
+</button>
+</div>
+
+<div class="column">
+<button class="btn"><a href="http://127.0.0.1:8000/rotationlunge/">
+  <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/T5VoUSfvRG-my8kBF5yAsQ.mp4" alt="Lunge" ></a>
+  <br>Bodyweight Rotation Lunge
+</button>
+</div>
+
+
+<div class="column"> 
+<button class="btn"><a href="http://127.0.0.1:8000/walkinglunge/">
+  <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/MYFi5GKTQw2ExsmvCCxXyQ.mp4" alt="Lunge" ></a>
+<br>Bodyweight Walking Lunge
+</button>
+</div>
+
+</div>
+</section>
+
+{% endblock %}
+

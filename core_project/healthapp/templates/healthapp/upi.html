@@ -1,0 +1,55 @@
+    {% extends 'base.html' %}
+    {% block upiactive %} active {% endblock %}
+    {% block body %}
+    {% load static %}
+
+
+    
+    <br>
+
+    <h1 style="text-align:center;">UPI PAYMENT</h1><hr>
+
+
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+.button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 50px;
+  cursor: pointer;
+  font-family: 'Times New Roman', Times, serif;
+  text-align: center;
+  text-decoration: none;
+  outline: black;
+  color: #fff;
+  background-color: #ffffff;
+  border: solid 2px black;
+  border-radius: 15px;
+  box-shadow: 0 9px rgb(8, 7, 7);
+  width: 500px;
+}
+
+.button:hover {background-color: #379c37}
+
+.button:active {
+  background-color: #07a10c;
+  box-shadow: 0 5px #666;
+  transform: translateY(4px);
+}
+</style>
+</head>
+<body>
+<center>
+
+<button class="button"><a href="http://127.0.0.1:8000/gpay">Google Pay</a></button><br><br><br>
+
+</center>
+</body>
+</html>
+
+
+</div>
+
+    {% endblock %}

@@ -1,0 +1,120 @@
+
+{% extends 'base.html' %}
+
+{% block title %} WORKOUT! {% endblock %}
+{% block backtabactive %} active {% endblock %}
+{% block body %}
+{% load static %}
+
+
+<head>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    text-align: center;
+    padding-left: 60px;
+    
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  img{
+    width:350px;
+    height:350px;
+  }
+  </style>
+  </head>
+
+<body>
+  <br>
+  &nbsp;<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+    Other Exercises
+  </a>
+  
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title" id="offcanvasExampleLabel" style="color:black ;">Other Exercises</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        
+      </div>
+      
+      <div class="d-grid gap-3 mx-auto" style="height: 2px;">
+       
+        
+        <button class="btn btn-secondary btn-lg" type="button" ><a href="http://127.0.0.1:8000/lungestab/" style="color: white;">Lunges</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/fbtab/" style="color: white;">Full Body</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/cardiotab/" style="color: white;">Cardio</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/coretab/" style="color: white;">Core</a></button>
+        <button class="btn btn-secondary btn-lg disabled" type="button"><a href="http://127.0.0.1:8000/backtab/" style="color: white;">Back</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/shouldertab/" style="color: white;">Shoulder</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/armtab/" style="color: white;">Arms</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/chesttab/" style="color: white;">Chest</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/legstab/" style="color: white;">Legs</a></button>
+     
+      </div>
+    </div>
+</div>
+
+    <hr><h2 style="text-align:center;">BACK WORKOUT:</h2><hr>
+
+    <!--ROW 1-->   
+    <div class="row">
+       
+     <div class="column">
+       <button class="btn"><a href="">
+         <img src="" alt="Back" style="width:100%"></a>
+         Workout
+       </button>
+     </div>
+     <div class="column">
+       <button class="btn"><a href="">
+         <img src="" alt="Back" style="width:100%"></a>
+         Workout
+       </button>
+     </div>
+     <div class="column">
+       <button class="btn"><a href="">
+         <img src="" alt="Back" style="width:100%"></a>
+         Workout
+       </button>
+     </div>
+ <!--ROW 2-->
+ <div class="row">
+     
+ 
+   <div class="column">
+     <button class="btn"><a href="">
+       <img src="" alt="Back" style="width:100%"></a>
+       Workout
+     </button>
+   </div>
+   <div class="column">
+     <button class="btn"><a href="">
+       <img src="" alt="Back" style="width:100%"></a>
+       Workout
+     </button>
+   </div>
+   <div class="column">
+     <button class="btn"><a href="">
+       <img src="" alt="Back" style="width:100%"></a>
+       Workout
+     </button>
+   </div>
+
+</div>
+
+
+{% endblock %}

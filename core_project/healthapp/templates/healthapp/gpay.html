@@ -1,0 +1,16 @@
+    {% extends 'base.html' %}
+{% block title %}Google Pay {% endblock %}
+{% block gpayactive %} active {% endblock %}
+{% block body %}
+<h1 style="text-align:center;">Google</h1><hr>
+
+
+</div>
+<div class="upi_inputs" style="text-align: center;">
+<h4>UPI ID: &nbsp;&nbsp; <input id="upi" type="text" pattern="email" maxlength="10" inputmode="alphabetic" placeholder="johndoe@okbank" style="width:400px; height:50px; border:solid 2px black;"> <br><br></h4>
+<button class="btn" type="submit" value="submit" style="height: 50px; width: 300px; background-color: grey; color: white; font-size:20px;">Submit</button>
+
+
+
+
+{% endblock %}

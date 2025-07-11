@@ -1,0 +1,89 @@
+    {% extends 'base.html' %}
+
+    {% block title %}Thank you for subscribing!{% endblock %}
+    {% block confirmationactive %} active {% endblock %}
+    {% block body %}
+    <header>
+        <meta http-equiv="refresh" content="5; url =
+        #contactus" />
+    </header>
+    <div class="jumbotron text-center">
+        <h1 class="display-3">Thank You for subscribing!</h1>
+        <p class="lead"><strong>Your transaction is successful!</strong><br>Please login to access your member account!</p>
+    
+        
+    </div>
+    
+
+    <!--print-->
+    <div id="invoice">
+        <div>
+        <div class="card">
+        <div class="card-body mx-4">
+        <div class="container">
+            <p class="my-5 mx-5" style="font-size: 40px; text-align: center; text-decoration: solid;">INVOICE</p>
+            <div class="row">
+            <ul class="list-unstyled">
+                <li class="text-black"></li>
+                <li class="text-muted mt-1"><span class="text-black"></span></li>
+                <li class="text-black mt-1">Date of subscription: September 30, 2022</li>
+                <li class="text-black mt-1">Validity: 1 Year</li>
+            </ul>
+            <hr>
+            <div class="col-xl-10">
+                <p>Plus membership</p>
+            </div>
+            <div class="col-xl-2">
+                <p class="float-end">INR 2900.00
+                </p>
+            </div>
+            <hr>
+            </div>
+        
+            
+            <div class="row">
+            <div class="col-xl-10">
+                <p>Convenience fees</p>
+            </div>
+            <div class="col-xl-2">
+                <p class="float-end">INR 100.00
+                </p>
+            </div>
+            <hr style="border: 2px solid black;">
+            </div>
+            <div class="row text-black">
+    
+            <div class="col-xl-12">
+                <p class="float-end fw-bold">Total: INR 3000.00
+                </p>
+            </div>
+            <hr style="border: 2px solid black;">
+            </div>
+        </div>
+        </div>
+    
+        <div style="text-align:center; font-family: 'Times New Roman', Times, serif; font-size: 30px;">
+        <a href="#" onClick="javascript:window.print()">Print</a>
+        </div>
+    </div>
+    </div>
+    <script>
+    function printInfo(ele) {
+        var openWindow = window.open("", "title", "attributes");
+        openWindow.document.write(ele.previousSibling.innerHTML);
+        openWindow.document.close();
+        openWindow.focus();
+        openWindow.print();
+        openWindow.close();
+    }
+    </script>
+    </div>
+    <div>
+        <p style="text-align:center;">
+            Having trouble? <a href="http://127.0.0.1:8000#contactus">Contact us</a>
+        </p>
+        <p class="lead" style="text-align:center;">
+            <a class="btn btn-primary btn-sm" href="http://127.0.0.1:8000/" role="button">Continue to homepage</a>
+        </p>
+    </div>
+    {% endblock %}

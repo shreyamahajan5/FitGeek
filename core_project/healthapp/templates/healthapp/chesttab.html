@@ -1,0 +1,120 @@
+
+{% extends 'base.html' %}
+
+{% block title %} WORKOUT! {% endblock %}
+{% block chesttabactive %} active {% endblock %}
+{% block body %}
+{% load static %}
+
+
+<head>
+  <style>
+  * {
+    box-sizing: border-box;
+  }
+  
+  .column {
+    float: left;
+    width: 33.33%;
+    padding: 10px;
+    text-align: center;
+    padding-left: 60px;
+    
+  }
+  
+  /* Clearfix (clear floats) */
+  .row::after {
+    content: "";
+    clear: both;
+    display: table;
+  }
+  img{
+    width:350px;
+    height:350px;
+  }
+  </style>
+  </head>
+<body>
+  <br>
+  &nbsp;<a class="btn btn-primary" data-bs-toggle="offcanvas" href="#offcanvasExample" role="button" aria-controls="offcanvasExample">
+    Other Exercises
+  </a>
+  
+  <div class="offcanvas offcanvas-start" tabindex="-1" id="offcanvasExample" aria-labelledby="offcanvasExampleLabel">
+    <div class="offcanvas-header">
+      <h4 class="offcanvas-title" id="offcanvasExampleLabel" style="color:black ;">Other Exercises</h4>
+      <button type="button" class="btn-close" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+    </div>
+    <div class="offcanvas-body">
+      <div>
+        
+      </div>
+      
+      <div class="d-grid gap-3 mx-auto" style="height: 2px;">
+       
+         
+        <button class="btn btn-secondary btn-lg" type="button" ><a href="http://127.0.0.1:8000/lungestab/" style="color: white;">Lunges</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/fbtab/" style="color: white;">Full Body</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/cardiotab/" style="color: white;">Cardio</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/coretab/" style="color: white;">Core</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/backtab/" style="color: white;">Back</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/shouldertab/" style="color: white;">Shoulder</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/armtab/" style="color: white;">Arms</a></button>
+        <button class="btn btn-secondary btn-lg disabled" type="button"><a href="http://127.0.0.1:8000/chesttab/" style="color: white;">Chest</a></button>
+        <button class="btn btn-secondary btn-lg" type="button"><a href="http://127.0.0.1:8000/legstab/" style="color: white;">Legs</a></button>
+     
+      </div>
+    </div>
+</div>
+
+
+    <hr><h2 style="text-align:center;">CHEST WORKOUT:</h2><hr>
+
+    <!--ROW 1-->   
+    <div class="row">
+       
+     <div class="column">
+       <button class="btn"><a href="http://127.0.0.1:8000/sprint/">
+         <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/-yIbbC0mSVGQpBOdDEMlag.mp4" alt="Full Body" style="width:100%"></a>
+         PLANK SPRINT
+       </button>
+     </div>
+     <div class="column">
+       <button class="btn"><a href="http://127.0.0.1:8000/modifiedpushup/">
+         <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/D0wJLskjQrCDXgTDWkzMzg.mp4" alt="Full Body" style="width:100%"></a>
+         MODIFIED PUSH-UP
+       </button>
+     </div>
+     <div class="column">
+       <button class="btn"><a href="http://127.0.0.1:8000/incline/">
+         <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/7tUDGgzMQ3a8kx4D6drNBA.mp4" alt="Full Body" style="width:100%"></a>
+         INCLINE PUSH-UP
+       </button>
+     </div>
+ <!--ROW 2-->
+ <div class="row">
+     
+ 
+   <div class="column">
+     <button class="btn"><a href="http://127.0.0.1:8000/tricep/">
+       <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/F1HbAmxhQBmFBTEtA1_jgw.mp4" alt="Full Body" style="width:100%"></a>
+       TRICEP PUSH-UP
+     </button>
+   </div>
+   <div class="column">
+     <button class="btn"><a href="http://127.0.0.1:8000/pushup/">
+       <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/QZhe0ge6RHCoi8aqth1Tlw.mp4" alt="Full Body" style="width:100%"></a>
+       PUSH-UP
+     </button>
+   </div>
+   <div class="column">
+     <button class="btn"><a href="http://127.0.0.1:8000/decline/">
+       <img src="https://steelfit-assets.s3-us-west-2.amazonaws.com/media/workouts/video/GzBvLiYiS-6RO4Sef_kRsQ.mp4" alt="Full Body" style="width:100%"></a>
+       DECLINE PUSH-UP
+     </button>
+   </div>
+
+</div>
+
+
+{% endblock %}

@@ -1,0 +1,54 @@
+
+    {% extends 'base.html' %}
+
+    {% block title %} Payment Methods:{% endblock %}
+    {% block paymethactive %} active {% endblock %}
+    {% block body %}
+    {% load static %}
+    <br><br>
+    <html>
+    <section id="paymethods" style="text-align:center;">
+        <h2>Available Payment methods:</h2>
+        <br>
+        <h4 style="color: red;font-family: Georgia, 'Times New Roman', Times, serif;">Amount: INR. 3000</h4>
+        <div class="col" style="text-align:center;">
+            <div class="col-12">
+            <div class="card">
+                <div class="card-body">
+                    <div class="c1" >
+                <h5 class="card-title">debit/credit card</h5>
+            <p class="card-text">Visa, Mastercard accepted.</p>
+            <a href="http://127.0.0.1:8000/payment/" class="btn btn-primary">PAY</a>
+                    </div>
+            </div>
+        </div>
+        </div>
+        <div class="col-12">
+        <div class="card">
+            <div class="card-body">
+                <div class="c2">
+            <h5 class="card-title">UPI payment</h5>
+            <p class="card-text">Google-Pay, PayTM accepted.</p>
+            <a href="http://127.0.0.1:8000/upi/" class="btn btn-primary">PAY</a>
+            </div>
+                </div>
+            </div>
+            </div>
+        </div>
+    </section>
+    <style>
+        paymethods{
+            text-align: center;
+
+        }
+        .c1,.c2{
+            text-align: center;
+            font-size: large;
+        }
+    </style>
+    </html>
+    {% endblock %}
+    
+    
+
+    
